@@ -1,43 +1,22 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { useFonts } from "expo-font";
-
-import Home from "./screens/Home";
-
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: "transparent",
-  },
-};
-
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from './screens/Login';
+import Signup from './screens/Signup';
+import ScanQR from './screens/ScanQR';
 const Stack = createStackNavigator();
-
 const App = () => {
-  const [loaded] = useFonts({
-    InterBold: require("./assets/fonts/Inter-Bold.ttf"),
-    InterSemiBold: require("./assets/fonts/Inter-SemiBold.ttf"),
-    InterMedium: require("./assets/fonts/Inter-Medium.ttf"),
-    InterRegular: require("./assets/fonts/Inter-Regular.ttf"),
-    InterLight: require("./assets/fonts/Inter-Light.ttf"),
-  });
 
-  if (!loaded) return null;
 
   return (
-    <NavigationContainer theme={theme}>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        initialRouteName="Home"
-      >
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Login" component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+    );
 };
 
 export default App;
