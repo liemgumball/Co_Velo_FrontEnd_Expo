@@ -28,7 +28,7 @@ export const Colors = {
 
 const { primary, secondary, tertiary, darkLight, brand, green, red } = Colors;
 
-export const StyledContainer = styled.SafeAreaView`
+export const StyledContainer = styled.View`
   flex: 1;
   padding: 25px;
   padding-top: ${StatusBarHeight + 10}px;
