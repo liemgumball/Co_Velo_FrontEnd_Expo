@@ -4,6 +4,7 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 
 import Home from "./screens/Home";
+import Login from "./screens/Login";
 
 const theme = {
   ...DefaultTheme,
