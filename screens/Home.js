@@ -1,30 +1,23 @@
-import { View, SafeAreaView, FlatList, Text, TextInput, Button } from "react-native";
-import { COLORS } from "../constants"
+import React from 'react';
+import {View, StyleSheet, Text, SafeAreaView} from 'react-native';
+import Background from '../components/Background';
+import Btn from '../components/Btn';
+import { darkGreen, green } from '../components/Constants';
 
-const Home = () => {
+const Home = (props) => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1 }}>
-        <View style={{ zIndex: 0 }}>
-          <TextInput
-            placeholder={'Username'}
-          // style={{flex : 1}}
-          />
-          <TextInput
-            placeholder={'Password'}
-          // secureTextEntry={true}
-          // style={{flex : 2}}
-          />
-
-          <Button
-            title={'Login'}
-          // style={{flex : 3}}
-          // onPress={this.onLogin.bind(this)}
-          />
-        </View>
+    <Background>
+      <View style={{ marginHorizontal: 40, marginVertical: 100 }}>
+      <Text style={{ color: 'white', fontSize: 64 }}>Let's start</Text>
+      <Text style={{ color: 'white', fontSize: 64, marginBottom: 40 }}>Co Vélo</Text>
+      <SafeAreaView style={{ alignItems: 'center', justifyContent: 'center', bgColor: 'white', paddingTop: 100}}>
+        <Btn bgColor={green} textColor='white' btnLabel="Login" Press={() => props.navigation.navigate("Login")} />
+        <Btn bgColor='white' textColor={darkGreen} btnLabel="Signup" Press={() => props.navigation.navigate("Signup")} />
+      </SafeAreaView>
       </View>
-    </SafeAreaView>
+    </Background>
   );
 };
+const styles = StyleSheet.create({});
 
 export default Home;
