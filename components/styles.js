@@ -52,7 +52,7 @@ export const WelcomeImage = styled.Image`
 `
 
 export const PageLogo = styled.Image`
-    width: 250px;
+    width: 230px;
     height: 200px;
 `
 
@@ -134,13 +134,43 @@ export const StyledButton = styled.TouchableOpacity`
     `}
 `
 
+export const ButtonSmail = styled.TouchableOpacity`
+    padding: 15px;
+    background-color: ${brand};
+    justify-content: center;
+    border-radius: 5px;
+    margin-vertical: 5px;
+    height: 60px;
+    align-items: center;
+
+    ${(props) => props.google == true && `
+        background-color: ${green};
+        flex-direction: row;
+        justify-content: center;
+    `}
+`
+
 export const ButtonText = styled.Text`
     color: ${primary};
-    font-size: 16px;
+    font-size: 20px;
     ${(props) => props.google == true && `
         padding-left: 10px;
     `}
 `
+export const DetailText = styled.Text`
+    color: "#99004d";
+    font-size: 17px;
+    font-weight: bold;
+    padding-left: 1px;
+`
+
+export const TitleText = styled.Text`
+    color: "#99004d";
+    font-size: 17px;
+    font-weight: normal;
+    padding-left: 1px;
+`
+
 export const MsgBox = styled.Text`
     text-align: center;
     font-size: 13px;

@@ -5,21 +5,23 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Welcome from './screens/Welcome';
+import Verify from './screens/Verify';
 // import Signup from './screens/Signup';
 const Stack = createStackNavigator();
 const App = () => {
 
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={Signup} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <Stack.Navigator screenOptions={{ headerShown: false }}>
+    //     <Stack.Screen name="Login" component={Login} />
+    //     <Stack.Screen name="Signup" component={Signup} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
     // <Login></Login>
-    // <Signup />
+    //  <Signup />
     // <Welcome />
+    <Verify/>
     );
 };
 
