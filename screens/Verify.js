@@ -151,3 +151,5 @@ const Verify = (props) => {
 };
 
 export default Verify;
+
+export default Verify
