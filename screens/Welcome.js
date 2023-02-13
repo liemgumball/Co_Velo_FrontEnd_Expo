@@ -7,6 +7,7 @@ import {
 } from "../components/styles"
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, Touchable, TouchableOpacity } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 
 //icons
 import { Octicons, Ionicons, Fontisto } from '@expo/vector-icons';
@@ -14,8 +15,7 @@ import { Octicons, Ionicons, Fontisto } from '@expo/vector-icons';
 const { brand, darkLight, primary, green } = Colors
 
 const Welcome = (props) => {
-    const [hidePassword, setHidePassword] = useState(true)
-
+    const nav = useNavigation();
     return (
         <>
             <StatusBar style='light' />
@@ -27,9 +27,9 @@ const Welcome = (props) => {
                     <StyledFormArea>
                         <Avatar resizeMod="cover" source={require('../assets/icon.png')} />
                         <Line />
-                        <StyledButton onPress={() => { }} >
+                        <StyledButton onPress={() => nav.navigate("Login")}  >
                             <ButtonText >
-                                Logout
+                                Login
                             </ButtonText>
                         </StyledButton>
                     </StyledFormArea>

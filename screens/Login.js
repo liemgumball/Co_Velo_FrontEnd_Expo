@@ -11,12 +11,12 @@ import { View, Text, Touchable, TouchableOpacity, ScrollView } from 'react-nativ
 //icons
 import { Octicons, Ionicons, Fontisto } from '@expo/vector-icons';
 import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
-
+import { useNavigation } from "@react-navigation/native";
 const { brand, darkLight, primary, green } = Colors
 
 const Login = (props) => {
   const [hidePassword, setHidePassword] = useState(true)
-
+  const nav = useNavigation();
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
@@ -57,7 +57,10 @@ const Login = (props) => {
                 setHidePassword={setHidePassword}
               />
               <MsgBox>...</MsgBox>
-              <StyledButton onPress={handleSubmit}>
+              <StyledButton  
+                // onPress={handleSubmit}
+                onPress={() => nav.navigate("Home")}
+              >
                 <ButtonText>
                   Login
                 </ButtonText>
