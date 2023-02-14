@@ -62,85 +62,88 @@ const Verify = (props) => {
           >
             {({ handleChange, handleBlur, handleSubmit, values }) => (
               <StyledFormArea>
-                {/* <MsgBox>........</MsgBox> */}
-                <View
-                  style={{
-                    justifyContent: "space-between",
-                    padding: 20,
-                    width: 310,
-                    height: 300,
-                    backgroundColor: "beige",
-                    borderRadius: 10,
-                  }}
-                >
+                <View style={{  padding:0,
+                       flex: 1 , flexDirection: "column", justifyContent:'space-between' }}>
                   <View
                     style={{
-                      flex: 1,
-                      flexDirection: "row",
                       justifyContent: "space-between",
+                      padding: 30,
+                      width: 310,
+                      height: 300,
+                      backgroundColor: "beige",
+                      borderRadius: 10,
                     }}
                   >
-                    <TitleText google={true}>Người thuê : </TitleText>
-                    <DetailText google={true}>Lê Thị Nhật Hà</DetailText>
+                    <View
+                      style={{
+                        flex: 1,
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <TitleText>Người thuê:</TitleText>
+                      <DetailText>Lê Thị Nhật Hà</DetailText>
+                    </View>
+                    <View
+                      style={{
+                        flex: 1,
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <TitleText>ID Xe mượn:</TitleText>
+                      <DetailText>12adffgghfhs2</DetailText>
+                    </View>
+                    <View
+                      style={{
+                        flex: 1,
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <TitleText>Thời gian:</TitleText>
+                      <DetailText>07:30 20/02/2023</DetailText>
+                    </View>
+                    <Line />
+                    <View
+                      style={{
+                        flex: 1,
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <TitleText>Thời gian mượn:</TitleText>
+                      <DetailText>10 phút</DetailText>
+                    </View>
                   </View>
-                  <View
-                    style={{
-                      flex: 1,
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <TitleText google={true}>ID Người thuê : </TitleText>
-                    <DetailText google={true}>1231231232</DetailText>
-                  </View>
-                  <View
-                    style={{
-                      flex: 1,
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <TitleText google={true}>ID xe mượn : </TitleText>
-                    <DetailText google={true}>12adfs2</DetailText>
-                  </View>
-                  <View
-                    style={{
-                      flex: 1,
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <TitleText google={true}>Thời gian mượn : </TitleText>
-                    <DetailText google={true}>10 phút</DetailText>
-                  </View>
-                </View>
 
-                {/* Button */}
-                <Line />
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                  }}
-                >
+                  {/* Button */}
                   <View
                     style={{
-                      width: 130,
+                      flex: 1,
+                      flexDirection: "row",
+                      justifyContent: "space-around",
                     }}
                   >
-                    <ButtonSmail onPress={handleSubmit} google={true}>
-                      <Fontisto name="close" color={primary} size={25} />
-                      <ButtonText google={true}>Trở lại</ButtonText>
-                    </ButtonSmail>
-                  </View>
-                  <View>
-                    <ButtonSmail onPress={handleSubmit} google={true}>
-                      <Fontisto name="star" color={primary} size={20} />
-                      <ButtonText google={true}>Xác nhận</ButtonText>
-                    </ButtonSmail>
+                    <View
+                      style={{
+                        width: 130,
+                      }}
+                    >
+                      <ButtonSmail onPress={handleSubmit} google={true}>
+                        <Fontisto name="close" color={primary} size={25} />
+                        <ButtonText google={true}>Trở lại</ButtonText>
+                      </ButtonSmail>
+                    </View>
+                    <View>
+                      <ButtonSmail onPress={handleSubmit} google={true}>
+                        <Fontisto name="star" color={primary} size={20} />
+                        <ButtonText google={true}>Xác nhận</ButtonText>
+                      </ButtonSmail>
+                    </View>
                   </View>
                 </View>
+               
               </StyledFormArea>
             )}
           </Formik>
@@ -152,4 +155,3 @@ const Verify = (props) => {
 
 export default Verify;
 
-export default Verify
