@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { View, Text, Image, TextInput, TouchableOpacity, SafeAreaView, Dimensions, ScrollView } from "react-native"
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, SafeAreaView, Dimensions, ScrollView } from "react-native"
 import Constants from "expo-constants"
 
 let screenHeight = Dimensions.get("window").height
