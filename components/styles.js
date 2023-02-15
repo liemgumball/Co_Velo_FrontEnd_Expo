@@ -3,6 +3,7 @@ import { View, Text, Image, TextInput, TouchableOpacity, SafeAreaView, Dimension
 import Constants from "expo-constants"
 
 let screenHeight = Dimensions.get("window").height
+let screenWidth = Dimensions.get("window").width
 const StatusBarHeight = Constants.statusBarHeight;
 
 export const Colors = {
@@ -17,7 +18,7 @@ export const Colors = {
 
 const { primary, secondary, tertiary, darkLight, brand, green, red } = Colors
 
-export const StyledContainer = styled.SafeAreaView`
+export const StyledContainer = styled.View`
     flex: 1;
     padding: 25px;
     padding-top: ${StatusBarHeight + 10}px;
@@ -28,7 +29,13 @@ export const InnerContainer = styled.View`
     flex: 1;
     width: 100%;
     align-items: center;
-    height: ${screenHeight};
+    justify-content: center;
+`
+export const ScannerContainer = styled.View`
+    flex:1;
+    backgroundColor: ${primary};
+    align-items: center;
+    justify-content: center;
 `
 export const WelcomeCotainer = styled(InnerContainer)`
     padding: 25px;
@@ -77,7 +84,7 @@ export const SubTitle = styled.Text`
     ${props => props.welcome && `
         margin-bottom: 5px;
         font-weight: nomal;
-    `} 
+    `}
 `
 
 export const StyledFormArea = styled.View`
