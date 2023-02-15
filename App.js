@@ -21,6 +21,7 @@ const App = () => {
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Verify" component={Verify} />
+        <Stack.Screen name="ScanQR" component={ScanQR} />
       </Stack.Navigator>
     </NavigationContainer>
     );
