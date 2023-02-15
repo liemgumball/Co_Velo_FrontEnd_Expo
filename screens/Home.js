@@ -46,6 +46,7 @@ const Home = () => {
           }}
           rightComponent={
             <Button
+              onPress={() => nav.navigate("ScanQR")}
               icon={<Fontisto name="qrcode" color={primary} size={12} />}
             />
           }

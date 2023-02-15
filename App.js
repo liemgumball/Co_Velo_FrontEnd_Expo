@@ -13,16 +13,18 @@ const App = () => {
 
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* <Stack.Screen name="Welcome" component={Welcome} /> */}
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="Verify" component={Verify} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <Stack.Navigator screenOptions={{ headerShown: false }}>
+    //     {/* <Stack.Screen name="Welcome" component={Welcome} /> */}
+    //     <Stack.Screen name="Home" component={Home} />
+    //     <Stack.Screen name="Login" component={Login} />
+    //     <Stack.Screen name="Signup" component={Signup} />
+    //     <Stack.Screen name="Profile" component={Profile} />
+    //     <Stack.Screen name="Verify" component={Verify} />
+    //     <Stack.Screen name="ScanQR" component={ScanQR} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    <Profile/>
     );
 };
 

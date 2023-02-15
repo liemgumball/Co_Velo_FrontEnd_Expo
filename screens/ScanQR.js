@@ -4,8 +4,9 @@ import { BarCodeScanner } from 'expo-barcode-scanner'
 import React, { useState, useEffect } from 'react'
 import { DebugInstructions } from 'react-native/Libraries/NewAppScreen'
 import { StatusBar } from 'expo-status-bar'
-
+import { useNavigation } from '@react-navigation/core'
 const ScanQR = () => {
+  const nav = useNavigation()
   const { brand } = Colors
   const [hasPermission, setHasPermission] = useState(null);
   const [isScanned, setIsScanned] = useState(false);
@@ -51,7 +52,7 @@ const ScanQR = () => {
   // Return the View
   return (
     <ScannerContainer>
-      <StatusBar style='dark' />
+      <StatusBar style='auto'/>
       <BarCodeScanner
         onBarCodeScanned={isScanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}>
@@ -59,7 +60,7 @@ const ScanQR = () => {
       <View style={{ flex: 1, position: "absolute", alignItems: "center", justifyContent: "center" }}>
         <View style={{ borderWidth: 5, borderColor: brand, width: 200, height: 200, borderRadius: 10 ,margin:120}}></View>
 
-        <StyledButton>
+        <StyledButton onPress={() => {nav.navigate("Home")}}>
           <ButtonText>Go Back</ButtonText>
         </StyledButton>
       </View>
