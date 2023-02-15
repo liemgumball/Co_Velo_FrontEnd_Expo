@@ -1,111 +1,162 @@
-import React from 'react';
-import {View, Text, Touchable, TouchableOpacity} from 'react-native';
-import Background from '../components/Background';
-import Btn from '../components/Btn';
-import {darkGreen} from '../components/Constants';
-import Field from '../components/Field';
+import React, { useState } from 'react';
+import {
+  StyledContainer, InnerContainer, PageLogo, PageTitle, SubTitle, StyledFormArea
+  , LeftIcon, RightIcon, StyledInputLabel, StyledTextInput, Colors, ButtonText, StyledButton,
+  Line, MsgBox, ExtraText, ExtraView, TextLink, TextLinkContent
+} from "../components/styles"
+import { StatusBar } from 'expo-status-bar';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { Formik } from 'formik';
+import { View, Text, Touchable, TouchableOpacity, ScrollView } from 'react-native';
 
-const Signup = props => {
+
+//icons
+import { Octicons, Ionicons, Fontisto } from '@expo/vector-icons';
+import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
+
+const { brand, darkLight, primary, green } = Colors
+
+const Signup = (props) => {
+  const [hidePassword, setHidePassword] = useState(true)
+  const [show, setShow] = useState(false)
+  const [date, setDate] = useState(new Date(2023, 1, 1))
+
+  const [dob, setDob] = useState()
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(false)
+    setDate(currentDate)
+    setDob(currentDate)
+  }
+
+  const showDatePicker = () => {
+    setShow(true)
+  }
   return (
-    <Background>
-      <View style={{alignItems: 'center', width: 400}}>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 64,
-            fontWeight: 'bold',
-            marginTop: 20,
-          }}>
-          Register
-        </Text>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 19,
-            fontWeight: 'bold',
-            marginBottom: 20,
-          }}>
-          Create a new account
-        </Text>
-        <View
-          style={{
-            backgroundColor: 'white',
-            height: 700,
-            width: 460,
-            borderTopLeftRadius: 130,
-            paddingTop: 50,
-            alignItems: 'center',
-          }}>
-          <Field placeholder="First Name" />
-          <Field placeholder="Last Name" />
-          <Field
-            placeholder="Email / Username"
-            keyboardType={'email-address'}
-          />
-          <Field placeholder="Contact Number" keyboardType={'number'} />
-          <Field placeholder="Password" secureTextEntry={true} />
-          <Field placeholder="Confirm Password" secureTextEntry={true} />
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              width: '78%',
-              paddingRight: 16
-            }}>
-            <Text style={{color: 'grey', fontSize: 16}}>
-              By signing in, you agree to our{' '}
-            </Text>
-            <Text style={{color: darkGreen, fontWeight: 'bold', fontSize: 16}}>
-              Terms & Conditions
-            </Text>
-          </View>
+    <KeyboardAvoidingWrapper>
 
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent :"center",
-              width: '78%',
-              paddingRight: 16,
-              marginBottom: 10
-            }}>
-            <Text style={{color: 'grey', fontSize: 16}}>
-              and {" "}
-            </Text>
-            <Text style={{color: darkGreen, fontWeight: 'bold', fontSize: 16}}>
-              Privacy Policy
-            </Text>
-          </View>
-          <Btn
-            textColor="white"
-            bgColor={darkGreen}
-            btnLabel="Signup"
-            Press={() => {
-              alert('Accoutn created');
-              props.navigation.navigate('Login');
+      <StyledContainer>
+
+        <StatusBar style='dark' />
+        <InnerContainer>
+          <PageTitle>Co Velo</PageTitle>
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode='date'
+              is24Hour={true}
+              display="default"
+              onChange={onChange}
+            />
+          )}
+          <Formik initialValues={{ fullName: '', email: '', dateOfBirth: '', password: '', confirmPassword: '' }}
+            onSubmit={(values) => {
+              console.log(values);
             }}
-          />
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-            }}>
-            <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-              Already have an account ?{' '}
-            </Text>
-            <TouchableOpacity
-              onPress={() => props.navigation.navigate('Login')}>
-              <Text
-                style={{color: darkGreen, fontWeight: 'bold', fontSize: 16}}>
-                Login
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    </Background>
+          >
+            {({ handleChange, handleBlur, handleSubmit, values }) =>
+            (<StyledFormArea>
+              <MyTextInput
+                label="Full Name"
+                icon="person"
+                placeholder="Example"
+                placeholderTexcolor={darkLight}
+                onChangeText={handleChange('fullName')}
+                onBlur={handleBlur('fullName')}
+                value={values.fullName}
+              />
+              <MyTextInput
+                label="Email Address"
+                icon="mail"
+                placeholder="liem@gmail.com"
+                placeholderTexcolor={darkLight}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                value={values.email}
+                keyboardType="email-address"
+              />
+              <MyTextInput
+                label="Date of birth"
+                icon="calendar"
+                placeholder="YYYY - MM - DD"
+                placeholderTexcolor={darkLight}
+                onChangeText={handleChange('dateOfBirth')}
+                onBlur={handleBlur('dateOfBirth')}
+                value={dob ? dob.toDateString() : ''}
+                isDate={true}
+                editable={false}
+                showDatePicker={showDatePicker}
+              />
+              <MyTextInput
+                label="Password"
+                icon="lock"
+                placeholder="*********"
+                placeholderTexcolor={darkLight}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                value={values.password}
+                secureTextEntry={hidePassword}
+                isPassword={true}
+                hidePassword={hidePassword}
+                setHidePassword={setHidePassword}
+              />
+              <MyTextInput
+                label="Password"
+                icon="lock"
+                placeholder="*********"
+                placeholderTexcolor={darkLight}
+                onChangeText={handleChange('confirmPassword')}
+                onBlur={handleBlur('confirmPassword')}
+                value={values.confirmPassword}
+                secureTextEntry={hidePassword}
+                isPassword={true}
+                hidePassword={hidePassword}
+                setHidePassword={setHidePassword}
+              />
+              <MsgBox>...</MsgBox>
+              <StyledButton onPress={handleSubmit} google={true}>
+                <ButtonText google={true}>
+                  Sign up
+                </ButtonText>
+              </StyledButton>
+              <ExtraView>
+                <ExtraText>
+                  Have an account already?
+                </ExtraText>
+                <TextLink>
+                  <TextLinkContent onPress={() => { props.navigation.navigate('Login', { name: 'Login' }) }}>Login</TextLinkContent>
+                </TextLink>
+              </ExtraView>
+            </StyledFormArea>)
+            }
+          </Formik>
+        </InnerContainer>
+      </StyledContainer>
+    </KeyboardAvoidingWrapper>
   );
 };
+
+const MyTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, isDate, is24Hour, showDatePicker, ...props }) => {
+  return (
+    <View>
+      <LeftIcon>
+        <Octicons name={icon} size={30} color={brand} />
+      </LeftIcon>
+      <StyledInputLabel>{label}</StyledInputLabel>
+      {!isDate && <StyledTextInput {...props} />}
+      {isDate && <TouchableOpacity onPress={showDatePicker}>
+        <StyledTextInput {...props} />
+      </TouchableOpacity>}
+      {
+        isPassword && (
+          <RightIcon onPress={() => setHidePassword(!hidePassword)}>
+            <Ionicons name={hidePassword ? "md-eye-off" : "md-eye"} size={30} color={darkLight} />
+          </RightIcon>
+        )
+      }
+    </View>
+  )
+}
 
 export default Signup;

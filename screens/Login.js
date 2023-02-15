@@ -1,66 +1,108 @@
-import React from 'react';
-import {View, Text, Touchable, TouchableOpacity} from 'react-native';
-import Background from '../components/Background';
-import Btn from '../components/Btn';
-import {darkGreen} from '../components/Constants';
-import Field from '../components/Field';
+import React, { useState } from 'react';
+import {
+  StyledContainer, InnerContainer, PageLogo, PageTitle, SubTitle, StyledFormArea
+  , LeftIcon, RightIcon, StyledInputLabel, StyledTextInput, Colors, ButtonText, StyledButton,
+  Line, MsgBox, ExtraText, ExtraView, TextLink, TextLinkContent
+} from "../components/styles"
+import { StatusBar } from 'expo-status-bar';
+import { Formik } from 'formik';
+import { View, Text, Touchable, TouchableOpacity, ScrollView } from 'react-native';
+
+//icons
+import { Octicons, Ionicons, Fontisto } from '@expo/vector-icons';
+import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
+
+const { brand, darkLight, primary, green } = Colors
 
 const Login = (props) => {
+  const [hidePassword, setHidePassword] = useState(true)
+
   return (
-    <Background>
-      <View style={{alignItems: 'center', width: 400}}>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 64,
-            fontWeight: 'bold',
-            marginVertical: 20,
-          }}>
-          Login
-        </Text>
-        <View
-          style={{
-            backgroundColor: 'white',
-            height: 700,
-            width: 460,
-            borderTopLeftRadius: 130,
-            paddingTop: 100,
-            alignItems: 'center',
-          }}>
-          <Text style={{fontSize: 40, color: darkGreen, fontWeight: 'bold'}}>
-            Welcome Back
-          </Text>
-          <Text
-            style={{
-              color: 'grey',
-              fontSize: 19,
-              fontWeight: 'bold',
-              marginBottom: 20,
-            }}>
-            Login to your account
-          </Text>
-          <Field
-            placeholder="Email / Username"
-            keyboardType={'email-address'}
-          />
-          <Field placeholder="Password" secureTextEntry={true} />
-          <View
-            style={{alignItems: 'flex-end', width: '78%', paddingRight: 16, marginBottom: 200}}>
-            <Text style={{color: darkGreen, fontWeight: 'bold', fontSize: 16}}>
-              Forgot Password ?
-            </Text>
-          </View>
-          <Btn textColor='white' bgColor={darkGreen} btnLabel="Login" Press={() => alert("Logged In")} />
-          <View style={{ display: 'flex', flexDirection :'row', justifyContent: "center" }}>
-            <Text style={{ fontSize: 16, fontWeight:"bold" }}>Don't have an account ? </Text>
-            <TouchableOpacity onPress={() => props.navigation.navigate("Signup")}>
-            <Text style={{ color: darkGreen, fontWeight: 'bold', fontSize: 16 }}>Signup</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    </Background>
+    <KeyboardAvoidingWrapper>
+      <StyledContainer>
+        <StatusBar style='dark' />
+        <InnerContainer>
+          <PageLogo resizeMod="cover" source={require("../assets/leaves.jpg")} />
+          <PageTitle>Co Velo</PageTitle>
+          <SubTitle>Account Login</SubTitle>
+
+          <Formik initialValues={{ email: '', password: '' }}
+            onSubmit={(values) => {
+              console.log(values);
+            }}
+          >
+            {({ handleChange, handleBlur, handleSubmit, values }) =>
+            (<StyledFormArea>
+              <MyTextInput
+                label="Email Address"
+                icon="mail"
+                placeholder="example@gmail.com"
+                placeholderTexcolor={darkLight}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                value={values.email}
+                keyboardType="email-address"
+              />
+              <MyTextInput
+                label="Password"
+                icon="lock"
+                placeholder="*********"
+                placeholderTexcolor={darkLight}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                value={values.password}
+                secureTextEntry={hidePassword}
+                isPassword={true}
+                hidePassword={hidePassword}
+                setHidePassword={setHidePassword}
+              />
+              <MsgBox>...</MsgBox>
+              <StyledButton onPress={handleSubmit}>
+                <ButtonText>
+                  Login
+                </ButtonText>
+              </StyledButton>
+              <Line />
+              <StyledButton onPress={handleSubmit} google={true}>
+                <Fontisto name='google' color={primary} size={25} />
+                <ButtonText google={true}>
+                  Sign in with Google
+                </ButtonText>
+              </StyledButton>
+              <ExtraView>
+                <ExtraText>
+                  Don't have an account already?
+                </ExtraText>
+                <TextLink onPress={() => { props.navigation.navigate('Signup', { name: 'Signup' }) }}>
+                  <TextLinkContent>Signup</TextLinkContent>
+                </TextLink>
+              </ExtraView>
+            </StyledFormArea>)
+            }
+          </Formik>
+        </InnerContainer>
+      </StyledContainer>
+    </KeyboardAvoidingWrapper>
   );
 };
+
+const MyTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, ...props }) => {
+  return (
+    <View>
+      <LeftIcon>
+        <Octicons name={icon} size={30} color={brand} />
+      </LeftIcon>
+      <StyledInputLabel>{label}</StyledInputLabel>
+      <StyledTextInput {...props} />
+      {
+        isPassword && (
+          <RightIcon onPress={() => setHidePassword(!hidePassword)}>
+            <Ionicons name={hidePassword ? "md-eye-off" : "md-eye"} size={30} color={darkLight} />
+          </RightIcon>
+        )
+      }
+    </View>
+  )
+}
 
 export default Login;
