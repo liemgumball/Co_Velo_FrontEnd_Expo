@@ -9,17 +9,21 @@ import {
   VerifyValueText,
   ButtonTextHome,
   ButtonVerify,
+  HomeHistoryTableColumn,
+  TableHistoryText,
   Line,
 } from "../components/styles";
 import { StatusBar } from "expo-status-bar";
-import { View, ScrollView, SafeAreaView } from "react-native";
+import { View } from "react-native";
 import { Ionicons, Feather, Fontisto } from "@expo/vector-icons";
 import { Header, Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-const Verify = (props) => {
+import { SafeAreaView } from "react-native";
+import { ScrollView } from "react-native";
+const Confirm = (props) => {
   const nav = useNavigation();
   return (
-    <View style={{ backgroundColor: Colors.secondary, height: "100%" }}>
+    <View style={{ backgroundColor: Colors.secondary, height: 2000 }}>
       {/* status bar */}
       <StatusBar style="light" />
 
@@ -28,7 +32,7 @@ const Verify = (props) => {
         leftComponent={
           <Button
             onPress={() => {
-              nav.navigate('Confirm');
+              nav.navigate("Home");
             }}
             icon={
               <Ionicons name="chevron-back-outline" size={24} color="white" />
@@ -36,7 +40,7 @@ const Verify = (props) => {
           />
         }
         centerComponent={{
-          text: "Thông tin trả xe",
+          text: "Thông tin nhận xe",
           style: {
             fontWeight: "bold",
             paddingVertical: 5,
@@ -46,16 +50,16 @@ const Verify = (props) => {
         }}
       />
 
-      {/*Đon hàng hoàn thành*/}
       <View style={{ height: 800 }}>
+        {/*Đon hàng hoàn thành*/}
         <SafeAreaView>
           <ScrollView showsVerticalScrollIndicator={false}>
             <VerifyContainer>
               <VerifyFirtstContainer>
                 <View>
-                  <VerifyTitleText>Bạn đã trả xe thành công</VerifyTitleText>
+                  <VerifyTitleText>Bạn đã quét mã QR</VerifyTitleText>
                   <SubTitle style={{ fontSize: 17, marginLeft: 14 }}>
-                    Cảm ơn bạn đã sử dụng dịch vụ
+                    Kiểm tra thông tin
                   </SubTitle>
                 </View>
                 <Feather
@@ -68,7 +72,7 @@ const Verify = (props) => {
             </VerifyContainer>
 
             {/* THong tin đơn hàng  */}
-            <VerifyContainer style={{ height: "34%", marginTop: 10 }}>
+            <VerifyContainer style={{ marginTop: 20 }}>
               <VerifyFirtstContainer>
                 <VerifyTitleText>Mã lượt mượn</VerifyTitleText>
                 <VerifyValueText style={{ fontWeight: "bold" }}>
@@ -82,6 +86,16 @@ const Verify = (props) => {
               </VerifyFirtstContainer>
 
               <VerifyFirtstContainer>
+                <VerifyValueText>ID xe</VerifyValueText>
+                <VerifyValueText>165156156</VerifyValueText>
+              </VerifyFirtstContainer>
+
+              <VerifyFirtstContainer>
+                <VerifyValueText>Trạm mượn</VerifyValueText>
+                <VerifyValueText>Khu A</VerifyValueText>
+              </VerifyFirtstContainer>
+
+              <VerifyFirtstContainer>
                 <VerifyValueText>Ngày mượn</VerifyValueText>
                 <VerifyValueText>02/02/2023</VerifyValueText>
               </VerifyFirtstContainer>
@@ -90,40 +104,36 @@ const Verify = (props) => {
                 <VerifyValueText>Thời gian bắt đầu</VerifyValueText>
                 <VerifyValueText>07:30</VerifyValueText>
               </VerifyFirtstContainer>
-
-              <VerifyFirtstContainer>
-                <VerifyValueText>Thời gian kết thúc</VerifyValueText>
-                <VerifyValueText>07:40</VerifyValueText>
-              </VerifyFirtstContainer>
-
-              <VerifyFirtstContainer>
-                <VerifyValueText>Thời gian sử dụng</VerifyValueText>
-                <VerifyValueText>10 phút</VerifyValueText>
-              </VerifyFirtstContainer>
             </VerifyContainer>
 
             {/* Trạng thái vi phạm  */}
-            <VerifyContainer style={{ height: "10%", marginTop: 10 }}>
+            <VerifyContainer style={{ marginTop: 10 }}>
               <VerifyTitleText>Trạng thái vi phạm</VerifyTitleText>
               <VerifyValueText style={{ fontSize: 15, marginLeft: 10 }}>
-                Bạn không vi phạm gì cả
+                Bạn được phép tiếp tục mượn xe.
               </VerifyValueText>
             </VerifyContainer>
 
             {/* Buttom  */}
-            <VerifyContainer style={{ height: "50%", marginTop: 10 }}>
+            <VerifyContainer style={{ marginTop: 10 }}>
               <PageLogoVerify
                 resizeMod="cover"
                 source={require("../assets/velo.png")}
               />
               <Line />
-              <ButtonVerify>
-                <ButtonTextHome>Khiếu Nại</ButtonTextHome>
+              <ButtonVerify
+                onPress={() => {
+                  nav.navigate("Verify");
+                }}
+                style={{ backgroundColor: Colors.blue }}
+              >
+                <ButtonTextHome>Xác nhận</ButtonTextHome>
               </ButtonVerify>
-
-              <ButtonVerify  onPress={() => {
+              <ButtonVerify
+                onPress={() => {
                   nav.navigate("Home");
-                }} style={{ backgroundColor: Colors.blue }}>
+                }}
+              >
                 <ButtonTextHome>Trang Chủ</ButtonTextHome>
               </ButtonVerify>
             </VerifyContainer>
@@ -134,4 +144,4 @@ const Verify = (props) => {
   );
 };
 
-export default Verify;
+export default Confirm;

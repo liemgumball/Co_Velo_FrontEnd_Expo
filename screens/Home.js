@@ -2,165 +2,186 @@ import React from "react";
 import {
   Colors,
   TitleTextHome,
-  Line,
   styles,
-  SubTitle,
-  StyledInputLabel,
-  StyledButton,
-  ButtonText,
-  ExtraText,
+  HomeContainer,
+  HomeHistoryTable,
+  HomeHistoryTableColumn,
+  HomeReportStatus,
+  ButtonHome,
+  InnerContainer,
+  ButtonTextHome,
+  TableHistoryText,
 } from "../components/styles";
-import { View, Text, ScrollView, SafeAreaView, Alert } from "react-native";
+import { View, Text, ScrollView, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Header, Button, Image } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import { Fontisto } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
-const { brand, darkLight, primary, green } = Colors;
+import {
+  FontAwesome,
+  Fontisto,
+  MaterialIcons,
+} from "@expo/vector-icons";
 const Home = () => {
   const nav = useNavigation();
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          flexDirection: "column",
-        },
-      ]}
-    >
+    <View >
       {/* status bar */}
       <StatusBar style="light" />
-      <View style={{ flex: 1 }}>
-        <Header
-          leftComponent={
-            <Button onPress={() => nav.navigate("Profile")}  icon={<Fontisto name="male" color={primary} size={12} />} />
-          }
-          centerComponent={{
-            text: "Xin chào, Nhật Nam",
-            style: {
-              fontStyle: "italic",
-              fontWeight: "bold",
-              fontSize: 20,
-              color: "#fff",
-            },
-          }}
-          rightComponent={
-            <Button
-              onPress={() => nav.navigate("ScanQR")}
-              icon={<Fontisto name="qrcode" color={primary} size={12} />}
-            />
-          }
-        ></Header>
-      </View>
+      <Header
+        leftComponent={
+          <Button
+            onPress={() => {
+              nav.navigate("Profile");
+            }}
+            icon={<FontAwesome name="user" size={23} color="white" />}
+          />
+        }
+        centerComponent={{
+          text: "Xin chào, Nhật Nam",
+          style: {
+            fontWeight: "bold",
+            paddingVertical: 5,
+            fontSize: 23,
+            color: "#fff",
+          },
+        }}
+        rightComponent={
+          <Button
+            onPress={() => {
+              nav.navigate("Confirm");
+            }}
+            icon={<Fontisto name="qrcode" color={Colors.primary} size={20} />}
+          />
+        }
+      />
+
       {/* Lich su thue xe */}
-      <View style={{ flex: 5 }}>
-        <View style={[styles.containerPadding20]}>
-          <View style={{ flex: 1 }}>
-            <TitleTextHome>Lịch sử mượn xe</TitleTextHome>
-          </View>
-          <View style={{ flex: 6, paddingHorizontal: 8 }}>
-            <View
-              style={[
-                styles.container,
-                {
-                  flexDirection: "column",
-                  backgroundColor: "#EEF1F5",
-                  borderRadius: 10,
-                },
-              ]}
-            >
-              <SafeAreaView style={styles.container}>
-                <ScrollView
-                  showsVerticalScrollIndicator={false}
-                  style={styles.scrollView}
-                >
-                  <View style={styles.containerRow}>
-                    <Text style={styles.innerText}>20/02/2023</Text>
-                    <Text style={styles.innerText}>20s</Text>
-                    <Fontisto name="check" color={Colors.red} size={20} />
-                  </View>
-                  <View style={styles.containerRow}>
-                    <Text style={styles.innerText}>20/02/2023</Text>
-                    <Text style={styles.innerText}>8m20s</Text>
-                    <Fontisto name="check" color={Colors.red} size={20} />
-                  </View>
-                  <View style={styles.containerRow}>
-                    <Text style={styles.innerText}>20/02/2023</Text>
-                    <Text style={styles.innerText}>8m20s</Text>
-                    <Fontisto name="check" color={Colors.red} size={20} />
-                  </View>
-                  <View style={styles.containerRow}>
-                    <Text style={styles.innerText}>20/02/2023</Text>
-                    <Text style={styles.innerText}>8m20s</Text>
-                    <Fontisto name="check" color={Colors.red} size={20} />
-                  </View>
-                  <View style={styles.containerRow}>
-                    <Text style={styles.innerText}>20/02/2023</Text>
-                    <Text style={styles.innerText}>8m20s</Text>
-                    <Fontisto name="check" color={Colors.red} size={20} />
-                  </View>
-                  <View style={styles.containerRow}>
-                    <Text style={styles.innerText}>20/02/2023</Text>
-                    <Text style={styles.innerText}>8m20s</Text>
-                    <Fontisto name="check" color={Colors.red} size={20} />
-                  </View>
-                  <View style={styles.containerRow}>
-                    <Text style={styles.innerText}>20/02/2023</Text>
-                    <Text style={styles.innerText}>8m20s</Text>
-                    <Fontisto name="check" color={Colors.red} size={20} />
-                  </View>
-                </ScrollView>
-              </SafeAreaView>
-            </View>
-          </View>
-          <Line />
-        </View>
-      </View>
+      <HomeContainer>
+        <TitleTextHome>Lịch sử mượn xe</TitleTextHome>
+        <HomeHistoryTable>
+          <SafeAreaView>  
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+
+              <HomeHistoryTableColumn>
+                <TableHistoryText> 20/02/2023</TableHistoryText>
+                <TableHistoryText> 09:03</TableHistoryText>
+                <Fontisto name="check" color={Colors.red} size={20} />
+              </HomeHistoryTableColumn>
+            </ScrollView>
+          </SafeAreaView>
+        </HomeHistoryTable>
+      </HomeContainer>
+
       {/* So lan vi pham */}
-      <View style={{ flex: 5 }}>
-        <View style={{ flex: 5 }}>
-          <View style={styles.containerPadding20}>
-            <View style={{ flex: 1 }}>
-              <TitleTextHome>Số lần vi phạm</TitleTextHome>
-            </View>
-            <View style={{ flex: 2 }}>
-              <View
-                style={[
-                  styles.containerRow,
-                  {
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    paddingHorizontal: 50,
-                  },
-                ]}
-              >
-                <Fontisto name="bug" color={Colors.red} size={30} />
-                <Fontisto name="bug" color={Colors.darkLight} size={30} />
-                <Fontisto name="bug" color={Colors.darkLight} size={30} />
-              </View>
-            </View>
-            <Line />
-            <View style={[{ flex: 3 }]}>
-              <View
-                style={[
-                  styles.container,
-                  { alignItems: "center", justifyContent: "center" },
-                ]}
-              >
-                <View
-                  style={[{ width: "40%", margin: 10, backgroundColor: "red" }]}
-                >
-                  <Button
-                    // onPress={this.buttonClickListener}
-                    title="Khiếu Nại"
-                    color="#90A4AE"
-                  />
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
+      <HomeContainer style={{ height: 150 }}>
+        <TitleTextHome>Số lần vi phạm</TitleTextHome>
+        <HomeReportStatus>
+          <MaterialIcons name="report-problem" size={40} color="red" />
+          <MaterialIcons name="report-problem" size={40} color="black" />
+          <MaterialIcons name="report-problem" size={40} color="black" />
+        </HomeReportStatus>
+      </HomeContainer>
+
+      {/* Button khieu nai  */}
+      <InnerContainer>
+        <ButtonHome>
+          <ButtonTextHome>Khiếu Nại</ButtonTextHome>
+        </ButtonHome>
+      </InnerContainer>
     </View>
   );
 };

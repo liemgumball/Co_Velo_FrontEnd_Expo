@@ -11,9 +11,10 @@ import {
   ScrollView,
 } from "react-native";
 import Constants from "expo-constants";
+import { colors } from "react-native-elements";
 
-let screenHeight = Dimensions.get("window").height
-let screenWidth = Dimensions.get("window").width
+let screenHeight = Dimensions.get("window").height;
+let screenWidth = Dimensions.get("window").width;
 const StatusBarHeight = Constants.statusBarHeight;
 
 export const Colors = {
@@ -22,11 +23,27 @@ export const Colors = {
   tertiry: "#1F2937",
   darkLight: "#9CA3AF",
   brand: "#6D28D9",
+  yellow: "#FAFD51",
+  gray: "#BABDBD",
+  blue: colors.primary,
+  black: "#101010",
   green: "#10B981",
   red: "#EF4444",
 };
 
-const { primary, secondary, tertiary, darkLight, brand, green, red } = Colors;
+const {
+  primary,
+  yellow,
+  secondary,
+  gray,
+  tertiary,
+  blue,
+  darkLight,
+  brand,
+  black,
+  green,
+  red,
+} = Colors;
 
 export const StyledContainer = styled.View`
   flex: 1;
@@ -35,51 +52,6 @@ export const StyledContainer = styled.View`
   background-color: ${primary};
 `;
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  containerRow: {
-    flex: 1,
-    flexDirection: "row",
-    padding: 15,
-    justifyContent: "space-between",
-  },
-  containerPadding20: {
-    flex: 1,
-    padding: 20,
-    flexDirection: "column",
-  },
-  innerText: {
-    color: Colors.darkLight,
-    fontWeight: "bold",
-    fontSize: 20,
-  },
-  scrollView: {
-    marginHorizontal: 20,
-  },
-  buttonSmall: {
-    padding: 15,
-    backgroundcolor: red,
-    borderradius: 5,
-    marginvertical: 5,
-    height: 100,
-  },
-  button: {
-    flexDirection: "row",
-    height: 50,
-    width: 250,
-    backgroundColor: "yellow",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 50,
-    elevation: 3,
-  },
-  text: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-});
 
 export const InnerContainer = styled.View`
   flex: 1;
@@ -88,15 +60,88 @@ export const InnerContainer = styled.View`
   height: ${screenHeight}px;
 `;
 export const ScannerContainer = styled.View`
-    flex:1;
-    backgroundColor: ${primary};
-    align-items: center;
-    justify-content: center;
-`
+  flex: 1;
+  backgroundcolor: ${primary};
+  align-items: center;
+  justify-content: center;
+`;
 export const WelcomeCotainer = styled(InnerContainer)`
   padding: 25px;
   width: 100%;
   align-items: center;
+`;
+export const ProfileContainer = styled(View)`
+  width: 100%;
+  height: 100px;
+  flexDirection: row;
+  paddingLeft: 20px;
+  alignitems: center;
+  justifyContent: flex-start;
+  backgroundcolor: ${secondary};
+`;
+export const ProfileContainerColumn = styled(InnerContainer)`
+  padding: 15px;
+  width: 100%;
+  height: 100px;
+  justifyContent: flex-start;
+  flexdirection: column;
+  alignItems: flex-start;
+`;
+export const ProfileImage = styled.Image`
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+`;
+export const HomeContainer = styled(View)`
+  backgroundColor: ${gray};
+  margin: 30px;
+  width: 85%;
+  borderRadius: 10px;
+  height: 300px;
+  alignitems: center;
+  justifyContent: center;
+`;
+export const VerifyContainer = styled(View)`
+  backgroundColor: ${primary};
+`;
+export const VerifyFirtstContainer = styled(View)`
+  flexDirection: row;  
+  justifyContent: space-between;
+  marginRight: 14px;
+`;
+export const VerifyInfomationContainer = styled(View)`
+  backgroundColor: ${blue};
+  width: 100%;
+  borderRadius: 10px;
+  height: 100%;
+`;
+export const HomeHistoryTable = styled(View)`
+  padding: 10px;
+  width: 100%;
+  alignitems: center;
+  borderRadius: 20px;
+  height: 261px;
+`;
+export const HomeReportStatus = styled(View)`
+  paddingHorizontal: 50px;
+  flexDirection: row;
+  justifyContent: space-between;
+  height: 100px;
+  width: 94%;
+  marginLeft: 10px;
+  alignItems: center;
+  borderRadius: 20px;
+  backgroundColor: ${primary};
+`;
+export const HomeHistoryTableColumn = styled(View)`
+  padding: 6px;
+  width: 100%;
+  flexDirection: row;
+  justifyContent: space-between;
+  alignitems: center;
+  backgroundColor: ${primary};
+  borderradius: 2px;
+  height: 35px;
 `;
 export const Avatar = styled.Image`
   width: 100px;
@@ -114,12 +159,26 @@ export const WelcomeImage = styled.Image`
 `;
 
 export const PageLogo = styled.Image`
-  width: 230px;
-  height: 200px;
-`;
-export const PageLogoVerify= styled.Image`
   width: 100px;
   height: 100px;
+`;
+export const PageLogoVerify = styled.Image`
+  marginLeft: 90px;
+  width: 210px;
+  height: 190px;
+`;
+export const VerifyTitleText = styled.Text`
+  font-size: 22px;
+  font-weight: bold;
+  color: ${black};
+  padding: 8px;
+  marginLeft: 5px;
+`;
+export const VerifyValueText = styled.Text`
+  font-size: 20px;
+  color: ${black};
+  padding: 8px;
+  marginLeft: 5px;
 `;
 export const PageTitle = styled.Text`
   font-size: 30px;
@@ -147,8 +206,14 @@ export const SubTitle = styled.Text`
         margin-bottom: 5px;
         font-weight: nomal;
     `}
-`
-
+`;
+export const SubTitleVeryfy = styled.Text`
+  font-size: 18px;
+  margin-left: 14px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: ${tertiary};
+`;
 export const StyledFormArea = styled.View`
   width: 90%;
   z-index: -1;
@@ -205,39 +270,81 @@ export const StyledButton = styled.TouchableOpacity`
     `}
 `;
 
-export const ButtonSmail = styled.TouchableOpacity`
+export const ButtonSmall = styled.TouchableOpacity`
   padding: 15px;
-  background-color: ${brand};
+  background-color: "${brand}";
   justify-content: center;
   border-radius: 5px;
   margin-vertical: 5px;
-  height: 60px;
+  height: 10px;
   align-items: center;
-
-  ${(props) =>
-    props.google == true &&
-    `
-        background-color: ${green};
-        flex-direction: row;
-        justify-content: center;
-    `}
 `;
 
+export const ButtonFull = styled.TouchableOpacity`
+  padding-left: 40px;
+  margin: 10px;
+  border-radius: 10px;
+  marginvertical: 10px;
+  height: 35px;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+export const ButtonHome = styled.TouchableOpacity`
+  margin: 10px;
+  border-radius: 10px;
+  height: 40px;
+  width: 83%;
+  align-items: center;
+  backgroundColor: ${yellow}
+  justify-content: center;
+
+`;
+export const ButtonVerify = styled.TouchableOpacity`
+  margin: 5px;
+  marginLeft: 10px;
+  border-radius: 5px;
+  height: 50px;
+  width: 96%;
+  align-items: center;
+  backgroundColor: ${yellow}
+  justify-content: center;
+
+`;
+export const ButtonTextSmall = styled.TouchableOpacity`
+  color: ${primary};
+  font-size: 25px;
+`;
+export const ButtonProfile = styled.Text`
+  color: ${gray};
+  font-size: 25px;
+`;
 export const ButtonText = styled.Text`
   color: ${primary};
-  font-size: 20px;
+  font-size: 25px;
   ${(props) =>
     props.google == true &&
     `
         padding-left: 10px;
     `}
 `;
+export const ButtonTextProfile = styled.Text`
+  color: ${Colors.tertiry};
+  font-weight: bold;
+  font-size: 28px;
+  paddingLeft: 35px;
+`;
+
+export const ButtonTextHome = styled.Text`
+  color: ${Colors.tertiry};
+  font-weight: bold;
+  font-size: 28px;
+`;
 export const TitleTextHome = styled.Text`
-    color: "#f000";
-    font-size: 25px;
-    font-weight: bold;
-    fontStyle: "italic",
-    padding-left: 8px;
+  color: "#f000";
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 12px;
 `;
 export const DetailText = styled.Text`
     color: "#f000";
@@ -246,7 +353,23 @@ export const DetailText = styled.Text`
     fontStyle: "italic",
     padding-left: 8px;
 `;
-
+export const TableHistoryText = styled.Text`
+    color: ${darkLight};
+    fontSize: 22px;
+    font-weight: bold;
+    fontStyle: "italic",
+`;
+export const UserNameText = styled.Text`
+    color: ${blue};
+    font-size: 30px;
+    font-weight: bold;
+    fontStyle: "italic",
+`;
+export const StatusText = styled.Text`
+    color: ${red};
+    font-size: 20px;
+    fontStyle: "italic",
+`;
 export const TitleText = styled.Text`
   color: "#99004d";
   font-size: 17px;
@@ -285,6 +408,6 @@ export const TextLink = styled.TouchableOpacity`
 `;
 
 export const TextLinkContent = styled.Text`
-    color: ${brand};
-    font-size:15px;
-`
+  color: ${brand};
+  font-size: 15px;
+`;

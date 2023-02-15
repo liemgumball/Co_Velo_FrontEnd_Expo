@@ -1,31 +1,37 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Login from './screens/Login';
-import Signup from './screens/Signup';
-import Welcome from './screens/Welcome';
-import Verify from './screens/Verify';
-import Home from './screens/Home';
-import Profile from './screens/Profile';
-import ScanQR from './screens/ScanQR';
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { CardStyleInterpolators, createStackNavigator} from "@react-navigation/stack";
+import Login from "./screens/Login";
+import Signup from "./screens/Signup";
+import Welcome from "./screens/Welcome";
+import Verify from "./screens/Verify";
+import Home from "./screens/Home";
+import Profile from "./screens/Profile";
+import ScanQR from "./screens/ScanQR";
+import { closeConfig, config, HomeTransition, ProfileTransition, WelcomTransition } from "./components/Animation";
+import Confirm from "./screens/Confirm";
 const Stack = createStackNavigator();
-const App = () => {
 
-
+const AppStack = () => {
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator screenOptions={{ headerShown: false }}>
-    //     {/* <Stack.Screen name="Welcome" component={Welcome} /> */}
-    //     <Stack.Screen name="Home" component={Home} />
-    //     <Stack.Screen name="Login" component={Login} />
-    //     <Stack.Screen name="Signup" component={Signup} />
-    //     <Stack.Screen name="Profile" component={Profile} />
-    //     <Stack.Screen name="Verify" component={Verify} />
-    //     <Stack.Screen name="ScanQR" component={ScanQR} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-    <Profile/>
-    );
+    <Stack.Navigator screenOptions={{ ...HomeTransition, headerShown: false}}>
+      <Stack.Screen name="Verify" component={Verify}  options={{ ...ProfileTransition }} />
+      <Stack.Screen name="Confirm" component={Confirm}  options={{ ...ProfileTransition }} />
+      <Stack.Screen name="Welcome" component={Welcome} options={{ ...WelcomTransition }} />
+      <Stack.Screen name="Home" component={Home}  options={{ ...HomeTransition }}  />
+      <Stack.Screen name="Profile" component={Profile}   options={{ ...ProfileTransition }}/>
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Signup" component={Signup} />
+      <Stack.Screen name="ScanQR" component={ScanQR} />
+    </Stack.Navigator>
+  );
+};
+const App = () => {
+  return (
+    <NavigationContainer>
+      <AppStack />
+    </NavigationContainer>
+  );
 };
 
 export default App;
