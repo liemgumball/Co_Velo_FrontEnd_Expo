@@ -12,7 +12,8 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 
-let screenHeight = Dimensions.get("window").height;
+let screenHeight = Dimensions.get("window").height
+let screenWidth = Dimensions.get("window").width
 const StatusBarHeight = Constants.statusBarHeight;
 
 export const Colors = {
@@ -86,6 +87,12 @@ export const InnerContainer = styled.View`
   align-items: center;
   height: ${screenHeight}px;
 `;
+export const ScannerContainer = styled.View`
+    flex:1;
+    backgroundColor: ${primary};
+    align-items: center;
+    justify-content: center;
+`
 export const WelcomeCotainer = styled(InnerContainer)`
   padding: 25px;
   width: 100%;
@@ -140,7 +147,7 @@ export const SubTitle = styled.Text`
         margin-bottom: 5px;
         font-weight: nomal;
     `}
-`;
+`
 
 export const StyledFormArea = styled.View`
   width: 90%;
@@ -278,6 +285,6 @@ export const TextLink = styled.TouchableOpacity`
 `;
 
 export const TextLinkContent = styled.Text`
-  color: ${brand};
-  font-size: 15px;
-`;
+    color: ${brand};
+    font-size:15px;
+`
