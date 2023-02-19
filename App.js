@@ -8,6 +8,7 @@ import Verify from './screens/Verify';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
 import ScanQR from './screens/ScanQR';
+import ReportPage from './screens/ReportPage';
 const Stack = createStackNavigator();
 const App = () => {
 
@@ -16,7 +17,8 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="Welcome" component={Welcome} /> */}
-        <Stack.Screen name="Home" component={Home} />
+        {/* <Stack.Screen name="Home" component={Home} /> */}
+        <Stack.Screen name="ReportPage" component={ReportPage} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Profile" component={Profile} />
