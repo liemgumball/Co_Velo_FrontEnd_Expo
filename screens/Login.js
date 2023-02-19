@@ -11,6 +11,7 @@ import { View, Text, Touchable, TouchableOpacity, ScrollView } from 'react-nativ
 //icons
 import { Octicons, Ionicons, Fontisto } from '@expo/vector-icons';
 import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
+import MyTextInput from '../components/MyTextInput';
 import { useNavigation } from "@react-navigation/native";
 const { brand, darkLight, primary, green } = Colors
 
@@ -89,23 +90,6 @@ const Login = (props) => {
   );
 };
 
-const MyTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, ...props }) => {
-  return (
-    <View>
-      <LeftIcon>
-        <Octicons name={icon} size={30} color={brand} />
-      </LeftIcon>
-      <StyledInputLabel>{label}</StyledInputLabel>
-      <StyledTextInput {...props} />
-      {
-        isPassword && (
-          <RightIcon onPress={() => setHidePassword(!hidePassword)}>
-            <Ionicons name={hidePassword ? "md-eye-off" : "md-eye"} size={30} color={darkLight} />
-          </RightIcon>
-        )
-      }
-    </View>
-  )
-}
+
 
 export default Login;
