@@ -37,8 +37,7 @@ export const StyledContainer = styled.SafeAreaView`
   ${(props) => props.report && `
     justify-content: space-around;
     padding: 50px;
-
-  padding-top: ${StatusBarHeight + 30}px;
+    padding-top: ${StatusBarHeight + 30}px;
   `}
 `;
 
