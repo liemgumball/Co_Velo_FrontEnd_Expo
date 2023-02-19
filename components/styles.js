@@ -33,6 +33,13 @@ export const StyledContainer = styled.SafeAreaView`
   padding: 25px;
   padding-top: ${StatusBarHeight + 10}px;
   background-color: ${primary};
+
+  ${(props) => props.report && `
+    justify-content: space-around;
+    padding: 50px;
+
+  padding-top: ${StatusBarHeight + 30}px;
+  `}
 `;
 
 export const styles = StyleSheet.create({
@@ -117,7 +124,7 @@ export const PageLogo = styled.Image`
   width: 230px;
   height: 200px;
 `;
-export const PageLogoVerify= styled.Image`
+export const PageLogoVerify = styled.Image`
   width: 100px;
   height: 100px;
 `;
@@ -195,6 +202,7 @@ export const StyledButton = styled.TouchableOpacity`
   margin-vertical: 5px;
   height: 60px;
   align-items: center;
+  position: relative;
 
   ${(props) =>
     props.google == true &&
@@ -203,6 +211,11 @@ export const StyledButton = styled.TouchableOpacity`
         flex-direction: row;
         justify-content: center;
     `}
+  ${(props) => props.report == true && `
+    background-color: ${red}
+    flex-direction: row;
+    justify-content: center;
+  `}
 `;
 
 export const ButtonSmail = styled.TouchableOpacity`
@@ -226,11 +239,7 @@ export const ButtonSmail = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
   color: ${primary};
   font-size: 20px;
-  ${(props) =>
-    props.google == true &&
-    `
-        padding-left: 10px;
-    `}
+  padding-left: 20px;
 `;
 export const TitleTextHome = styled.Text`
     color: "#f000";

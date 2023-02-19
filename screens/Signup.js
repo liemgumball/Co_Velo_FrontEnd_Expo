@@ -7,6 +7,7 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Formik } from 'formik';
+import MyTextInput from '../components/MyTextInput'
 import { View, Text, Touchable, TouchableOpacity, ScrollView } from 'react-native';
 
 
@@ -136,27 +137,5 @@ const Signup = (props) => {
     </KeyboardAvoidingWrapper>
   );
 };
-
-const MyTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, isDate, is24Hour, showDatePicker, ...props }) => {
-  return (
-    <View>
-      <LeftIcon>
-        <Octicons name={icon} size={30} color={brand} />
-      </LeftIcon>
-      <StyledInputLabel>{label}</StyledInputLabel>
-      {!isDate && <StyledTextInput {...props} />}
-      {isDate && <TouchableOpacity onPress={showDatePicker}>
-        <StyledTextInput {...props} />
-      </TouchableOpacity>}
-      {
-        isPassword && (
-          <RightIcon onPress={() => setHidePassword(!hidePassword)}>
-            <Ionicons name={hidePassword ? "md-eye-off" : "md-eye"} size={30} color={darkLight} />
-          </RightIcon>
-        )
-      }
-    </View>
-  )
-}
 
 export default Signup;
