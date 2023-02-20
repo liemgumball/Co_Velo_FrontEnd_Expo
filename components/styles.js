@@ -50,6 +50,10 @@ export const StyledContainer = styled.View`
   padding: 25px;
   padding-top: ${StatusBarHeight + 10}px;
   background-color: ${primary};
+
+  ${(props) => props.report && `
+    justify-content: space-around;
+  `}
 `;
 
 
@@ -260,6 +264,7 @@ export const StyledButton = styled.TouchableOpacity`
   margin-vertical: 5px;
   height: 60px;
   align-items: center;
+  position: relative;
 
   ${(props) =>
     props.google == true &&
@@ -268,6 +273,11 @@ export const StyledButton = styled.TouchableOpacity`
         flex-direction: row;
         justify-content: center;
     `}
+  ${(props) => props.report == true && `
+    background-color: ${red}
+    flex-direction: row;
+    justify-content: center;
+  `}
 `;
 
 export const ButtonSmall = styled.TouchableOpacity`
@@ -321,12 +331,8 @@ export const ButtonProfile = styled.Text`
 `;
 export const ButtonText = styled.Text`
   color: ${primary};
-  font-size: 25px;
-  ${(props) =>
-    props.google == true &&
-    `
-        padding-left: 10px;
-    `}
+  font-size: 20px;
+  padding-left: 20px;
 `;
 export const ButtonTextProfile = styled.Text`
   color: ${Colors.tertiry};
