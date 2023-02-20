@@ -63,6 +63,9 @@ const ScanQR = () => {
         <StyledButton onPress={() => {nav.navigate("Home")}}>
           <ButtonText>Go Back</ButtonText>
         </StyledButton>
+        <StyledButton onPress={() => {nav.navigate("Confirm")}}>
+          <ButtonText>Verify</ButtonText>
+        </StyledButton>
       </View>
     </ScannerContainer>
   )

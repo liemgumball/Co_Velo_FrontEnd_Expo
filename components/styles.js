@@ -93,11 +93,12 @@ export const ProfileImage = styled.Image`
   margin: 10px;
 `;
 export const HomeContainer = styled(View)`
-  backgroundColor: ${gray};
-  margin: 30px;
-  width: 85%;
-  borderRadius: 10px;
-  height: 300px;
+  backgroundColor: #FFFFFF;
+  width: 108%;
+  margin-top: -30%;
+  margin-left: -4%;
+  borderRadius: 30px;
+  height: 500px;
   alignitems: center;
   justifyContent: center;
 `;
@@ -125,13 +126,12 @@ export const HomeHistoryTable = styled(View)`
 export const HomeReportStatus = styled(View)`
   paddingHorizontal: 50px;
   flexDirection: row;
-  justifyContent: space-between;
-  height: 100px;
-  width: 94%;
-  marginLeft: 10px;
+  justify-content: space-between;
+  height: 80px;
+  borderRadius: 30px;
   alignItems: center;
   borderRadius: 20px;
-  backgroundColor: ${primary};
+  marginTop: 10px;
 `;
 export const HomeHistoryTableColumn = styled(View)`
   padding: 6px;
@@ -346,6 +346,11 @@ export const TitleTextHome = styled.Text`
   font-weight: bold;
   padding-left: 12px;
 `;
+export const HelloNameText = styled.Text`
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+`;
 export const DetailText = styled.Text`
     color: "#f000";
     font-size: 20px;
@@ -410,4 +415,10 @@ export const TextLink = styled.TouchableOpacity`
 export const TextLinkContent = styled.Text`
   color: ${brand};
   font-size: 15px;
+`;
+export const WaningNameText = styled.Text`
+  color:  gray;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 40%;
 `;

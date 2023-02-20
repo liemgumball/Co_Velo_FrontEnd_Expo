@@ -3,7 +3,6 @@ import {
   Colors,
   TitleTextHome,
   styles,
-  HomeContainer,
   HomeHistoryTable,
   HomeHistoryTableColumn,
   HomeReportStatus,
@@ -11,177 +10,235 @@ import {
   InnerContainer,
   ButtonTextHome,
   TableHistoryText,
+  HomeContainer,
+  HelloNameText,
+  TextLinkContent,
+  WaningNameText,
 } from "../components/styles";
 import { View, Text, ScrollView, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { Icon } from "@iconify/react";
 import { Header, Button, Image } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import {
+  AntDesign,
+  Entypo,
   FontAwesome,
+  FontAwesome5,
   Fontisto,
+  Ionicons,
+  MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
+import {
+  Banner,
+  Crack,
+  HomeContainerScreen,
+  NavBar,
+  NavBarIcon,
+  PageLogoVerify,
+  ProfileIcon,
+  Warning,
+} from "../components/Style/HomeStyle";
+import { Navigation } from "feather-icons-react/build/IconComponents";
 const Home = () => {
   const nav = useNavigation();
   return (
-    <View >
+    <View>
       {/* status bar */}
-      <StatusBar style="light" />
-      <Header
-        leftComponent={
-          <Button
-            onPress={() => {
-              nav.navigate("Profile");
-            }}
-            icon={<FontAwesome name="user" size={23} color="white" />}
+      <StatusBar style="dark" />
+      <Banner>
+        <HelloNameText>Xin chào, Hoàng Văn Nam</HelloNameText>
+        <ProfileIcon
+           onPress={() => nav.navigate("Profile")} 
+           icon={   <AntDesign name="user" size={24} color="black" />}
+           />
+      </Banner>
+      <HomeContainerScreen>
+        <PageLogoVerify
+
+          resizeMod="cover"
+          source={require("../assets/velo.png")}
+        />
+        <Crack></Crack>
+        <Warning>
+          <WaningNameText>Vi phạm</WaningNameText>
+          <HomeReportStatus>
+            <MaterialIcons name="report-problem" size={40} color="red" />
+            <MaterialIcons name="report-problem" size={40} color="black" />
+            <MaterialIcons name="report-problem" size={40} color="black" />
+          </HomeReportStatus>
+        </Warning>
+
+        <HomeContainer>
+          <TitleTextHome>Lịch sử mượn xe</TitleTextHome>
+          <HomeHistoryTable>
+            <SafeAreaView>
+              <ScrollView showsVerticalScrollIndicator={false}>
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+
+                <HomeHistoryTableColumn>
+                  <TableHistoryText> 20/02/2023</TableHistoryText>
+                  <TableHistoryText> 09:03</TableHistoryText>
+                  <Fontisto name="check" color={Colors.red} size={20} />
+                </HomeHistoryTableColumn>
+              </ScrollView>
+            </SafeAreaView>
+          </HomeHistoryTable>
+        </HomeContainer>
+
+        {/* Button khieu nai  */}
+        {/* <InnerContainer>
+          <ButtonHome>
+            <ButtonTextHome>Khiếu Nại</ButtonTextHome>
+          </ButtonHome>
+        </InnerContainer> */}
+      </HomeContainerScreen>
+
+      <NavBar>
+        <NavBarIcon>
+          <AntDesign
+            style={{ paddingHorizontal: 12 }}
+            name="home"
+            size={24}
+            color="black"
           />
-        }
-        centerComponent={{
-          text: "Xin chào, Nhật Nam",
-          style: {
-            fontWeight: "bold",
-            paddingVertical: 5,
-            fontSize: 23,
-            color: "#fff",
-          },
-        }}
-        rightComponent={
-          <Button
-            onPress={() => {
-              nav.navigate("Confirm");
-            }}
-            icon={<Fontisto name="qrcode" color={Colors.primary} size={20} />}
+          <Text style={{ fontSize: 11 }}>Trang chủ</Text>
+        </NavBarIcon>
+
+        <NavBarIcon>
+          <Entypo
+            style={{ paddingHorizontal: 10 }}
+            name="location"
+            size={24}
+            color="black"
           />
-        }
-      />
+          <Text style={{ fontSize: 11 }}>Trạm xe</Text>
+        </NavBarIcon>
 
-      {/* Lich su thue xe */}
-      <HomeContainer>
-        <TitleTextHome>Lịch sử mượn xe</TitleTextHome>
-        <HomeHistoryTable>
-          <SafeAreaView>  
-            <ScrollView showsVerticalScrollIndicator={false}>
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
+        <NavBarIcon>
+          <FontAwesome5
+            style={{ paddingHorizontal: 10 }}
+            name="qrcode"
+            size={24}
+            color="black"
+          />
+          <Text style={{ fontSize: 11 }}>Quét mã</Text>
+        </NavBarIcon>
 
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
+        <NavBarIcon>
+          <Ionicons
+            style={{ paddingHorizontal: 10 }}
+            name="notifications"
+            size={24}
+            color="black"
+          />
+          <Text style={{ fontSize: 11 }}>Thông báo</Text>
+        </NavBarIcon>
 
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-
-              <HomeHistoryTableColumn>
-                <TableHistoryText> 20/02/2023</TableHistoryText>
-                <TableHistoryText> 09:03</TableHistoryText>
-                <Fontisto name="check" color={Colors.red} size={20} />
-              </HomeHistoryTableColumn>
-            </ScrollView>
-          </SafeAreaView>
-        </HomeHistoryTable>
-      </HomeContainer>
-
-      {/* So lan vi pham */}
-      <HomeContainer style={{ height: 150 }}>
-        <TitleTextHome>Số lần vi phạm</TitleTextHome>
-        <HomeReportStatus>
-          <MaterialIcons name="report-problem" size={40} color="red" />
-          <MaterialIcons name="report-problem" size={40} color="black" />
-          <MaterialIcons name="report-problem" size={40} color="black" />
-        </HomeReportStatus>
-      </HomeContainer>
-
-      {/* Button khieu nai  */}
-      <InnerContainer>
-        <ButtonHome>
-          <ButtonTextHome>Khiếu Nại</ButtonTextHome>
-        </ButtonHome>
-      </InnerContainer>
+        <NavBarIcon>
+          <AntDesign
+            style={{ paddingHorizontal: 12 }}
+            name="profile"
+            size={24}
+            color="black"
+          />
+          <Text style={{ fontSize: 11 }}>Cá nhân</Text>
+        </NavBarIcon>
+      </NavBar>
     </View>
   );
 };

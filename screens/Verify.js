@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Colors,
   SubTitle,
-  PageLogoVerify,
   VerifyContainer,
   VerifyFirtstContainer,
   VerifyTitleText,
@@ -68,7 +67,7 @@ const Verify = (props) => {
             </VerifyContainer>
 
             {/* THong tin đơn hàng  */}
-            <VerifyContainer style={{ height: "34%", marginTop: 10 }}>
+            <VerifyContainer style={{ height: "36%", marginTop: 10 }}>
               <VerifyFirtstContainer>
                 <VerifyTitleText>Mã lượt mượn</VerifyTitleText>
                 <VerifyValueText style={{ fontWeight: "bold" }}>
@@ -84,6 +83,11 @@ const Verify = (props) => {
               <VerifyFirtstContainer>
                 <VerifyValueText>Ngày mượn</VerifyValueText>
                 <VerifyValueText>02/02/2023</VerifyValueText>
+              </VerifyFirtstContainer>
+             
+              <VerifyFirtstContainer>
+                <VerifyValueText>Trạm trả</VerifyValueText>
+                <VerifyValueText>Khu B</VerifyValueText>
               </VerifyFirtstContainer>
 
               <VerifyFirtstContainer>
@@ -117,7 +121,10 @@ const Verify = (props) => {
                 source={require("../assets/velo.png")}
               />
               <Line />
-              <ButtonVerify>
+              <ButtonVerify  onPress={() => {
+                  nav.navigate("ReportPage");
+                }}
+              >
                 <ButtonTextHome>Khiếu Nại</ButtonTextHome>
               </ButtonVerify>
 
