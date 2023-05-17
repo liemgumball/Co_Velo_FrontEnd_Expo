@@ -11,8 +11,8 @@ import ScanQR from "./screens/ScanQR";
 import ReportPage from "./screens/Reportpage/ReportPage";
 import { closeConfig, config, HomeTransition, ProfileTransition, WelcomTransition } from "./components/Animation";
 import Confirm from "./screens/Confirm";
-import NavBar from "./screens/NavbarScreen/NavBar";
 import NofiticationSC from "./screens/Notification/NofiticationSC";
+import RentalRing from "./screens/RentalRing/RentalRing";
 const Stack = createStackNavigator();
 
 const AppStack = () => {
@@ -20,17 +20,17 @@ const AppStack = () => {
     <>
       <Stack.Navigator screenOptions={{ ...HomeTransition, headerShown: false }}>
         <Stack.Screen name="Home" component={Home} options={{ ...HomeTransition }} />
-        <Stack.Screen name="ScanQR" component={ScanQR}options={{ ...HomeTransition }}  />
+        <Stack.Screen name="Verify" component={Verify} options={{ ...ProfileTransition }} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="ScanQR" component={ScanQR} options={{ ...HomeTransition }} />
+        <Stack.Screen name="RentalRing" component={RentalRing} options={{ ...ProfileTransition }} />
         <Stack.Screen name="Notification" component={NofiticationSC} options={{ ...HomeTransition }} />
         <Stack.Screen name="Profile" component={Profile} options={{ ...HomeTransition }} />
         <Stack.Screen name="ReportPage" component={ReportPage} />
         <Stack.Screen name="Confirm" component={Confirm} options={{ ...ProfileTransition }} />
-        <Stack.Screen name="Verify" component={Verify} options={{ ...ProfileTransition }} />
         <Stack.Screen name="Welcome" component={Welcome} options={{ ...WelcomTransition }} />
-        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
       </Stack.Navigator>
-      <NavBar />
     </>
   );
 };

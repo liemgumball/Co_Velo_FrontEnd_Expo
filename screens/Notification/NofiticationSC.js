@@ -1,31 +1,33 @@
 import React from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import { Link, NavigationContainer } from "@react-navigation/native";
+import { Link, NavigationContainer, useNavigation } from "@react-navigation/native";
 import { MaterialTopTabView, createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { TouchableOpacity } from "react-native-web";
 import { TouchNoti } from "../../components/styles";
+import NavBar from "../NavbarScreen/NavBar";
 
 
 function Notification() {
+    const nav = useNavigation();
     function checkHeader(data) {
         if (data == "Trả xe") {
-          return (
-            <Link to="/Verify">
-              <Text>Đi đến trang chủ</Text>
-            </Link>
-          );
+            return (
+                <Link to="/Verify">
+                    <Text>Đi đến trang chủ</Text>
+                </Link>
+            );
         } else {
-          return (
-            <Link to="/confirm">
-              <Text>Xác nhận</Text>
-            </Link>
-          );
+            return (
+                <Link to="/confirm">
+                    <Text>Xác nhận</Text>
+                </Link>
+            );
         }
-      }
-      
+    }
+
     const data = [
         {
             id: "1",
@@ -115,8 +117,12 @@ function Notification() {
                     return (
                         <View style={NotificationStyle.container}>
                             <TouchNoti onPress={() => {
-                                
-                            }}   >
+                                if (item.header === "Trả xe") {
+                                    nav.navigate("Verify");
+                                } else  {
+                                    nav.navigate("Confirm");
+                                }
+                            }} >
                                 <View style={{ marginLeft: 15, marginRight: 15 }}>
                                     <View>
                                         <Text style={NotificationStyle.header}>{item.header}</Text>
@@ -229,6 +235,7 @@ const NofiticationSC = () => {
                 <Tab.Screen name="Thông báo" component={Notification} />
                 <Tab.Screen name="Tin tức" component={News} />
             </Tab.Navigator>
+            <NavBar/>
         </>
     );
 }

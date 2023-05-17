@@ -1,5 +1,6 @@
 import styled from "styled-components";
 export const NavBarHome = styled.View`
+  margin-top:5px;
   background: #feff86;
   height: 7%;
   flex-direction: row;

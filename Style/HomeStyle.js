@@ -6,6 +6,7 @@ export const Banner = styled.View`
   padding-top: 50px;
   flex-direction: row;
   border:none;
+  position: relative;
   color: white;
 `;
 export const Crack = styled.View`

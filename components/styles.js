@@ -110,8 +110,8 @@ export const VerifyContainer = styled(View)`
 `;
 export const VerifyFirtstContainer = styled(View)`
   flexDirection: row;  
-  justifyContent: space-between;
-  marginRight: 14px;
+  justify-content: space-between;
+  padding: 5px 10px;
 `;
 export const VerifyInfomationContainer = styled(View)`
   backgroundColor: ${blue};
@@ -173,14 +173,27 @@ export const VerifyTitleText = styled.Text`
   font-size: 22px;
   font-weight: bold;
   color: ${black};
-  padding: 8px;
+  padding: 5px 10px;
   marginLeft: 5px;
 `;
 export const VerifyValueText = styled.Text`
   font-size: 20px;
   color: ${black};
   padding: 8px;
-  marginLeft: 5px;
+  justify-content: flex-end;
+`;
+export const VerifyValueClock = styled.Text`
+  font-size: 40px;
+  color: ${black};
+  display: flex; 
+  justify-content: space-between;
+  margin: 10px auto;
+`;
+export const VerifyValueText2 = styled.Text`
+  font-size: 20px;
+  color: ${black};
+  padding: 8px;
+  justify-content: flex-end;
 `;
 export const PageTitle = styled.Text`
   font-size: 30px;

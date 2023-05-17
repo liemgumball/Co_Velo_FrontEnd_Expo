@@ -11,6 +11,7 @@ import {
   HomeHistoryTableColumn,
   TableHistoryText,
   Line,
+  VerifyValueText2,
 } from "../components/styles";
 import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
@@ -18,10 +19,99 @@ import { Ionicons, Feather, Fontisto, MaterialIcons } from "@expo/vector-icons";
 import { Header, Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native";
+import { useRoute } from '@react-navigation/native';
 import { ScrollView } from "react-native";
 import { PageLogoVerify } from "../components/styles";
+import { getCurrentDate, getCurrentDateTime, getCurrentTime } from "../unity/DateTimeUtils";
+import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from "react";
+
+
 const Confirm = (props) => {
   const nav = useNavigation();
+  const route = useRoute();
+
+  const { ID } = route.params;
+  const { Station_id } = route.params;
+  const { Magnetic_key } = route.params;
+
+  const currentDateTime = getCurrentDateTime();
+  const currentDate = getCurrentDate();
+  const currentTime = getCurrentTime();
+
+  const [userID, setuserID] = useState("");
+
+  useEffect(() => {
+    const retrieveData = async () => {
+      try {
+        const data = await AsyncStorage.getItem('user');
+        if (data) {
+          const user = JSON.parse(data);
+          setuserID(user.id);
+        } else {
+          console.log('Không tìm thấy giá trị user trong AsyncStorage');
+        }
+      } catch (error) {
+        console.log('Lỗi khi lấy giá trị:', error);
+      }
+    };
+    retrieveData();
+
+
+
+  }, []);
+
+  function callApiCreateRental() {
+    return axios
+      .post('https://covelo.onrender.com/rental/create/', {
+        "user": userID,
+        "bicycle": ID,
+        "start_station": Station_id
+      })
+      .then((response) => {
+        if (response.data) {
+          console.log(response.data);
+        } else {
+          // Đăng nhập thất bại, hiển thị thông báo lỗi
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  function callApiSetLocker() {
+    console.log(Magnetic_key);
+    return axios
+      .patch(`https://covelo.onrender.com/bicycle/update/${Magnetic_key}`, {
+        "locker": null
+      })
+      .then((response) => {
+        if (response.data) {
+          console.log(response.data);
+          nav.navigate("RentalRing");
+        } else {
+          // Đăng nhập thất bại, hiển thị thông báo lỗi
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    async function fetchData() {
+      callApiCreateRental();
+      callApiSetLocker();
+      // const locker = await callApiReadingNovelList(accID);
+      // setReadingNovels(readingNovelList);
+      // setNewNovels(newNovelList);
+    }
+    fetchData();
+
+  };
   return (
     <>
       <View style={{ heigth: "100%" }}>
@@ -33,7 +123,7 @@ const Confirm = (props) => {
           leftComponent={
             <Button
               onPress={() => {
-                nav.navigate('Confirm');
+                nav.goBack();
               }}
               icon={
                 <Ionicons name="chevron-back-outline" size={24} color="white" />
@@ -41,7 +131,7 @@ const Confirm = (props) => {
             />
           }
           centerComponent={{
-            text: "Thông tin trả xe",
+            text: "Thông tin mượn xe",
             style: {
               fontWeight: "bold",
               paddingVertical: 5,
@@ -64,26 +154,37 @@ const Confirm = (props) => {
             {/* THong tin đơn hàng  */}
             <VerifyContainer style={{ marginTop: 15 }}>
               <VerifyFirtstContainer>
-                <VerifyTitleText>Mã lượt mượn</VerifyTitleText>
+                <VerifyTitleText>Mã xe:</VerifyTitleText>
                 <VerifyValueText style={{ fontWeight: "bold" }}>
-                  239765892392
+
                 </VerifyValueText>
+                {ID &&
+                  <VerifyValueText>   {ID} </VerifyValueText>
+                }
               </VerifyFirtstContainer>
 
 
               <VerifyFirtstContainer>
-                <VerifyValueText>Ngày mượn</VerifyValueText>
-                <VerifyValueText>02/02/2023</VerifyValueText>
+                <VerifyValueText>Ngày mượn:</VerifyValueText>
+                {currentDate &&
+                  <VerifyValueText2> {currentDate} </VerifyValueText2>
+                }
               </VerifyFirtstContainer>
 
               <VerifyFirtstContainer>
-                <VerifyValueText>Trạm mượn </VerifyValueText>
-                <VerifyValueText>Khu A</VerifyValueText>
+                <VerifyValueText>Trạm mượn: </VerifyValueText>
+                {/* {Station_id &&
+                  <VerifyValueText >{Station_id}</VerifyValueText>
+                } */}
+                {Station_id &&
+                  <VerifyValueText>  Khu {Station_id} </VerifyValueText>
+                }
               </VerifyFirtstContainer>
-
               <VerifyFirtstContainer>
-                <VerifyValueText>Thời gian bắt đầu</VerifyValueText>
-                <VerifyValueText>07:30</VerifyValueText>
+                <VerifyValueText>Thời gian bắt đầu:</VerifyValueText>
+                {currentTime &&
+                  <VerifyValueText2> {currentTime} </VerifyValueText2>
+                }
               </VerifyFirtstContainer>
 
             </VerifyContainer>
@@ -98,9 +199,7 @@ const Confirm = (props) => {
 
 
             {/* Buttom  */}
-            <ButtonVerify onPress={() => {
-              nav.navigate("Verify");
-            }}
+            <ButtonVerify onPress={handleSubmit}
             >
               <ButtonTextHome>Xác nhận</ButtonTextHome>
             </ButtonVerify>

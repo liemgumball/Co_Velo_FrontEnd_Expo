@@ -29,13 +29,16 @@ export const TextCodeDate = styled(Text)`
     font-weight: bold;
     left: 10px;
 `;
+export const HistoryBoxLINk = styled.TouchableOpacity`
+    
+`;
 export const ViewDetail = styled.TouchableOpacity`
     font-size: 25px;
-    top: 222px;
+    top: 212px;
     justify-content: center;
     margin-left: 5%;
     width: 90%;
-    height: 40px;
+    height: 50px;
     border: 1px solid gray;
     border-radius: 10px;
 `;
