@@ -108,6 +108,13 @@ export const VerifyContainer = styled(View)`
   width: 80%;
   margin: 10px auto;
 `;
+export const VerifyTitle = styled(View)`
+   backgroundColor: ${primary};
+  border-radius: 20px;
+  display:flex;
+  flex-direction: row;
+  margin: 10px auto;
+`;
 export const VerifyFirtstContainer = styled(View)`
   flexDirection: row;  
   justify-content: space-between;

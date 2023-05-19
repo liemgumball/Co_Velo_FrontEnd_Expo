@@ -49,7 +49,6 @@ function Profile() {
         if (data) {
           const user = JSON.parse(data);
           setusername(user.username);
-          setviolate_number(user.violate_number);
         } else {
           console.log('Không tìm thấy giá trị user trong AsyncStorage');
         }

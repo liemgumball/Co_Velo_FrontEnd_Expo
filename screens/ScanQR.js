@@ -13,13 +13,11 @@ const ScanQR = () => {
   const { brand } = Colors
   const [hasPermission, setHasPermission] = useState(null);
   const [isScanned, setIsScanned] = useState(false);
-  const [isRescan, setIsRescan] = useState(false);
-  const [text, setText] = useState('Not yet scanned')
   const [ID, setID] = useState("")
   const [isLoading, setIsLoading] = useState(false);
   const [visible, setVisible] = useState(false);
-  const askForCameraPermission = () => {
 
+  const askForCameraPermission = () => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === 'granted');
@@ -28,6 +26,7 @@ const ScanQR = () => {
 
   const send_ID_Bicycle = async () => {
     setIsLoading(true);
+    setIsScanned(true);
     console.log(ID);
     axios
       .get(`https://covelo.onrender.com/bicycle/id=${ID}/`)
@@ -39,43 +38,34 @@ const ScanQR = () => {
         const locker_id = data.locker_id;
         const magnetic_key = data.magnetic_key;
         setIsLoading(false);
-        nav.navigate("Confirm", {ID: id, Station_id: station_id, Locker_id: locker_id, Magnetic_key: magnetic_key });
-        // setIsLoading(false);
+        nav.navigate("Confirm", { ID: id, Station_id: station_id, Locker_id: locker_id, Magnetic_key: magnetic_key });
       })
       .catch((error) => {
         console.log(error);
-        console.log(ID);
+        if (axios.isAxiosError(error) && error.response && error.response.status === 404) {
+          alert("Xe bạn quét đang được sử dụng, không thể mượn");
+        }
         setIsLoading(false);
       });
   }
 
+  const handleBarCodeScanned = ({ type, data }) => {
+    setIsScanned(true);
+    if (checkArrayForText(data))
+      send_ID_Bicycle();
+    else {
+      alert("Mã QR bị lỗi, hãy quét lại");
+    }
+  };
+
   // Request Camera Permission
   useEffect(() => {
     askForCameraPermission();
+    setIsScanned(false);
     setInterval(() => {
       setVisible(!visible);
     }, 2000);
-    setIsScanned(false);
-    setIsRescan(false);
-    send_ID_Bicycle();
-
-  }, [ID]);
-
-
-
-  // What happens when we scan the bar code
-  const handleBarCodeScanned = ({ type, data }) => {
-    setIsScanned(true);
-    setText(data);
-    checkArrayForText(data);
-    send_ID_Bicycle();
-
-    if (isRescan) {
-      // Nếu đang ở trạng thái quét lại, đặt lại trạng thái quét và cho phép quét mã QR tiếp theo
-      setIsScanned(false);
-      setIsRescan(false);
-    }
-  };
+  }, []);
 
 
   function checkArrayForText(data) {
@@ -83,10 +73,13 @@ const ScanQR = () => {
     if (data.includes("COVELO_BKDN_")) {
       console.log("Chuỗi TEXT chứa đoạn COVELO_BKDN_");
       setID(data[12]);
+      return true;
     }
-    else
-      console.log("Chuỗi TEXT không chứa đoạn COVELO_BKDN_");
+    else {
+      return false;
+    }
   }
+
   // Check permissions and return the screens
   if (hasPermission === null) {
     return (
@@ -102,7 +95,6 @@ const ScanQR = () => {
       </StyledContainer>
     )
   }
- 
 
   return (
     <>
@@ -123,13 +115,9 @@ const ScanQR = () => {
         <View style={{ flex: 1, position: "absolute", alignItems: "center", justifyContent: "center" }}>
           <View style={{ borderWidth: 5, borderColor: brand, width: 200, height: 200, borderRadius: 10, margin: 120 }}></View>
 
-
-          <StyledButton onPress={() => setIsScanned(false)}>
+          <StyledButton onPress={() => setIsScanned(false)} >
             <ButtonText>Quét lại</ButtonText>
           </StyledButton>
-          {/* <StyledButton onPress={() => { nav.navigate("Confirm") }}>
-            <ButtonText>Verify</ButtonText>
-          </StyledButton> */}
         </View>
       </ScannerContainer>
       <NavBar />

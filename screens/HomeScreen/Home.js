@@ -36,12 +36,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Navigation } from "feather-icons-react/build/IconComponents";
 import NavBar from "../NavbarScreen/NavBar";
 import { Banner, ProfileIcon, Warning } from "../../Style/HomeStyle";
-import { HistoryBox, HistoryBoxLINk, IconHisDetail, PageHomeImageBikge, PageHomeImageBikge2, TextCode, TextCodeDate, TextCodeTime, ViewDetail } from "./HomeStyle";
+import { HistoryBox, HistoryBoxLINk, IconHisDetail, PageHomeImageBikge, PageHomeImageBikge2, TextCode, TextCodeDate, TextCodeTime, TextTime, ViewDetail } from "./HomeStyle";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import moment from 'moment';
 
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer'
 const historyData = [
   { date: '2022-05-01', status: 'completed' },
   { date: '2022-05-02', status: 'cancelled' },
@@ -53,6 +55,7 @@ const Home = () => {
   const [violate_number, setviolate_number] = useState("");
   const [historyList, sethistoryList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [timer, setTimer] = useState();
 
   function callApiLoadHistory() {
     return axios
@@ -74,47 +77,64 @@ const Home = () => {
   }
 
   const renderHistory = () => {
-    {
-      return (
-        historyList &&
-        historyList.map((history, index) => {
-          const dateTime = moment(history.time_begin);
-          const date = dateTime.format('YYYY-MM-DD');
-          const time = dateTime.format('HH:mm');
-          let statusIcon ;
-          if (history.status === "using") {
-            statusIcon = 1;
-          } else if (history.status === "finished") {
-            statusIcon = 2;
-          } else {
-            statusIcon = 3;
-          }
+    return (
+      historyList &&
+      historyList.map((history, index) => {
+        const dateTime = moment(history.time_begin);
+        const date = dateTime.format('YYYY-MM-DD');
+        const dateTimeEnd = moment(history.time_end);
+        const time_use =
+          history.status === 'finished'
+            ? moment.duration(dateTimeEnd.diff(dateTime)).asMinutes()
+            : moment.duration(moment().diff(dateTime)).asMinutes();
+        const roundedTimeUsed = Math.floor(time_use);
+        let statusIcon;
+        if (history.status === 'using') {
+          statusIcon = 1;
+        } else if (history.status === 'finished') {
+          statusIcon = 2;
+        } else {
+          statusIcon = 3;
+        }
 
-          return (
-            <HistoryBoxLINk key={index} onPress={() => nav.navigate("Verify", { id: history.id })}>
-              <HistoryBox>
-                <TextCode style={{ marginTop: 10 }}> #{history.id}</TextCode>
-                <IconHisDetail>
-                  {statusIcon === 1 && <Octicons name="verified" size={30} color="black" /> }
-                  {statusIcon === 2 && <MaterialIcons name="verified" size={30} color="blue" />}
-                  {statusIcon === 3 && <MaterialIcons name="error" size={24} color="black" />}
-                </IconHisDetail>
-                <TextCodeTime> {time} </TextCodeTime>
-                <TextCodeDate> {date} </TextCodeDate>
-                <ViewDetail onPress={() => nav.navigate("Verify")}>
-                  <HelloNameText>Chi tiết </HelloNameText>
-                </ViewDetail>
-                <PageHomeImageBikge
-                  resizeMod="cover"
-                  source={require("../../assets/bike2.png")}
-                />
-              </HistoryBox>
-            </HistoryBoxLINk>
-          );
-        })
-      );
-    }
+        return (
+          <HistoryBoxLINk key={index} onPress={() => nav.navigate('Verify', { id: history.id })}>
+            <HistoryBox>
+              <TextCode style={{ marginTop: 10 }}> #{history.id}</TextCode>
+              <IconHisDetail>
+                {statusIcon === 1 && <Octicons name="verified" size={30} color="red" />}
+                {statusIcon === 2 && <MaterialIcons name="verified" size={30} color="blue" />}
+                {statusIcon === 3 && <MaterialIcons name="error" size={24} color="black" />}
+              </IconHisDetail>
+
+              <TextCodeTime>
+                {statusIcon === 1 ?
+                    <Entypo name="clock" size={21} color="red" />
+                  :
+                  <Entypo name="clock" size={21} color="blue" />
+                }
+                <TextTime> {roundedTimeUsed} phút </TextTime>
+              </TextCodeTime>
+
+              <TextCodeDate>
+                {statusIcon === 1 ?
+                  <MaterialIcons name="date-range" size={22} color="red" />
+                  :
+                  <MaterialIcons name="date-range" size={22} color="blue" />
+                }
+                <TextTime> {date}  </TextTime>
+              </TextCodeDate>
+              <ViewDetail onPress={() => nav.navigate('Verify')}>
+                <HelloNameText>Chi tiết </HelloNameText>
+              </ViewDetail>
+              <PageHomeImageBikge resizeMod="cover" source={require('../../assets/bike2.png')} />
+            </HistoryBox>
+          </HistoryBoxLINk>
+        );
+      })
+    );
   };
+
 
   useEffect(() => {
     const retrieveData = async () => {
@@ -135,7 +155,9 @@ const Home = () => {
     callApiLoadHistory();
     retrieveData();
   }, []);
+
   historyList.sort((a, b) => moment(b.time_begin).diff(moment(a.time_begin)));
+
   const renderStars = () => {
     if (violate_number === 0) {
       const not_violet_stars = Array(3 - violate_number).fill().map((_, index) => (
@@ -157,8 +179,6 @@ const Home = () => {
       return [...stars, ...not_violet_stars];
     }
   };
-
-
 
   const nav = useNavigation();
   return (

@@ -17,16 +17,22 @@ export const TextCode = styled(Text)`
     font-size: 20px;
     margin: 0px 10px;
 `;
-export const TextCodeTime = styled(Text)`
-    font-size: 25px;
-    top: 241px;
-    font-weight: bold;
-    left: 200px;
+export const TextTime = styled(Text)`
+    font-size: 20px;
 `;
-export const TextCodeDate = styled(Text)`
-    font-size: 25px;
+export const TextCodeTime = styled(View)`
+    font-size: 23px;
+    top: 235px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    left: 160px;
+`;
+export const TextCodeDate = styled(View)`
+    font-size: 20px;
     top: 210px;
     font-weight: bold;
+    flex-direction: row;
     left: 10px;
 `;
 export const HistoryBoxLINk = styled.TouchableOpacity`
