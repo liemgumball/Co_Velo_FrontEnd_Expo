@@ -33,7 +33,7 @@ const Verify = (props) => {
   const date_end = dateTimeEnd.format('YYYY-MM-DD');
   const time_end = dateTimeEnd.format('HH:mm');
   const time_use = moment.duration(dateTimeEnd.diff(dateTime)).asMinutes();
-  const [second, setSecond] = useState(50);
+  const [second, setSecond] = useState(1);
 
   // Thời điểm hiện tại
   const currentTime = moment();
@@ -81,16 +81,16 @@ const Verify = (props) => {
         if (response.data) {
           console.log(response.data);
           sethistory(response.data);
+      
           setLoading(false);
         } else {
-          // Đăng nhập thất bại, hiển thị thông báo lỗi
         }
       })
       .catch((error) => {
         console.log(error);
       });
   }
-  if (history.status == "finished")
+  if (history.status == "finished" ||history.status == "overtime"  )  
     return (
       <View style={{ heigth: "100%" }}>
         {/* status bar */}

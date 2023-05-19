@@ -27,7 +27,7 @@ const ScanQR = () => {
   }
 
   const send_ID_Bicycle = async () => {
-    // setIsLoading(true);
+    setIsLoading(true);
     console.log(ID);
     axios
       .get(`https://covelo.onrender.com/bicycle/id=${ID}/`)
@@ -38,6 +38,7 @@ const ScanQR = () => {
         const station_id = data.station_id;
         const locker_id = data.locker_id;
         const magnetic_key = data.magnetic_key;
+        setIsLoading(false);
         nav.navigate("Confirm", {ID: id, Station_id: station_id, Locker_id: locker_id, Magnetic_key: magnetic_key });
         // setIsLoading(false);
       })

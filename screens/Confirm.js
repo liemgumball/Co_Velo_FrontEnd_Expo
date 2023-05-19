@@ -35,7 +35,7 @@ const Confirm = (props) => {
   const { ID } = route.params;
   const { Station_id } = route.params;
   const { Magnetic_key } = route.params;
-
+  const [idrental, setIdRental] = useState("");
   const currentDateTime = getCurrentDateTime();
   const currentDate = getCurrentDate();
   const currentTime = getCurrentTime();
@@ -72,6 +72,8 @@ const Confirm = (props) => {
       .then((response) => {
         if (response.data) {
           console.log(response.data);
+          setIdRental(response.data.id);
+
         } else {
           // Đăng nhập thất bại, hiển thị thông báo lỗi
         }
@@ -89,7 +91,7 @@ const Confirm = (props) => {
       .then((response) => {
         if (response.data) {
           console.log(response.data);
-          nav.navigate("RentalRing");
+          nav.navigate("Verify",{ id: idrental });
         } else {
           // Đăng nhập thất bại, hiển thị thông báo lỗi
         }
@@ -98,7 +100,7 @@ const Confirm = (props) => {
         console.log(error);
       });
   }
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
